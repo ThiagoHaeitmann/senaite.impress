@@ -9,7 +9,7 @@
          tal:define="remarks python:model.getRemarks()"
          tal:condition="remarks">
       <div class="remarks_history">
-        <h2 i18n:translate>Remarks for <span tal:replace="model/getId"/></h2>
+        <h2 i18n:translate>Observações <span tal:replace="model/getId"/></h2>
         <tal:record repeat="record remarks">
           <div class="record" tal:attributes="id record/id;">
             <div class="record-header border-bottom" tal:condition="record/user_id">
