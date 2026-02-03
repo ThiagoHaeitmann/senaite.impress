@@ -43,7 +43,7 @@
                 </div>
                 <figcaption class="figure-caption pt-2">
                   <div class="att_for">
-                    <span i18n:translate="">Attachment for</span>
+                    <span i18n:translate="">Anexos</span>
                     <span tal:content="attachment/getTextTitle|model/getId"/>
                   </div>
                   <div class="att_keys">
