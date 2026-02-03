@@ -22,6 +22,9 @@
               <div class="client-name font-weight-bold">
                 <div tal:replace="client/Name|nothing"></div>
               </div>
+              <div class="client-cnpj">
+                <div tal:replace="client/TaxNumber|nothing"></div>
+              </div>
               <div class="contact-fullname">
                 <div tal:replace="contact/Fullname|nothing"></div>
               </div>
@@ -34,9 +37,6 @@
               <span class="client-city">
                 <div tal:replace="client/PostalAddress/city|nothing"></div>
               </span>
-              <div class="client-country">
-                <div tal:replace="client/PostalAddress/country|nothing"></div>
-              </div>
               <div class="contact-email">
                 <a tal:content="contact/EmailAddress|nothing"
                    tal:attributes="href string:mailto:${contact/EmailAddress}"></a>
@@ -54,6 +54,9 @@
             <address class="laboratory-address">
               <div class="lab-title font-weight-bold">
                 <div tal:replace="laboratory/title|nothing"/>
+              </div> 
+              <div class="cnpj">
+                <div tal:replace="laboratory/tax_number|nothing"/>
               </div>
               <div class="lab-supervisor" tal:condition="laboratory/Supervisor">
                 <span i18n:translate="">Supervisor</span>:
@@ -69,9 +72,6 @@
                 <span class="lab-city">
                   <div tal:replace="laboratory/PostalAddress/city|nothing"></div>
                 </span>
-                <div class="lab-country">
-                  <div tal:replace="laboratory/PostalAddress/country|nothing"></div>
-                </div>
               </div>
               <div class="lab-url">
                 <a tal:attributes="href laboratory/LabURL"
