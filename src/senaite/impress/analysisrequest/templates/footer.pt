@@ -19,17 +19,15 @@
         <tr>
           <td>
             <div>
-              <strong tal:content="laboratory/Name|nothing">Lab Name</strong>
-              • <span tal:content="laboratory/PhysicalAddress/address|nothing">Lab Street and Number</span>
+              <strong tal:content="laboratory/Name|nothing">Lab Name</strong> • <strong tal:content="laboratory/tax_number|nothing">CNPJ</strong>
+              <br/>
+              <span tal:content="laboratory/PhysicalAddress/address|nothing">Lab Street and Number</span>
               • <span tal:content="laboratory/PhysicalAddress/zip|nothing">Lab ZIP</span>
-              <span tal:content="laboratory/PhysicalAddress/city|nothing">Lab City</span>
-              • <span tal:content="laboratory/PhysicalAddress/country|nothing">Lab Country</span>
+              • <span tal:content="laboratory/PhysicalAddress/city|nothing">Lab City</span>
             </div>
             <div>
-              <span i18n:translate="">Phone</span>:
+              <span i18n:translate="">Telefone</span>:
               <span tal:content="laboratory/Phone|nothing">Lab Phone Number</span>
-              • <span i18n:translate="">Fax</span>:
-              <span tal:content="laboratory/Fax|nothing">Lab Fax Number</span>
               • <a href="#" tal:attributes="href string:mailto:${laboratory/EmailAddress|nothing}">
                 <span tal:content="laboratory/EmailAddress|nothing">Lab Email</span>
               </a>
