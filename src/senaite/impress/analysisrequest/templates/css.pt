@@ -47,6 +47,13 @@
      border-top: 1px solid black;
    }
 
+   .report .section-header {
+     display: block;
+     width: 100%;
+     /* Define que este elemento deve aparecer no topo de cada página */
+     position: running(header);
+   }
+
    <tal:block condition="python:content_width and content_height">
    <tal:block condition="python:all([content_width, content_height])"
                  define="cw python:float(content_width);
@@ -62,13 +69,21 @@
    }
    </tal:block>
    @page {
-     @bottom-right {
-       vertical-align: top;
-       margin-top: 2mm;
-       font-size: 9pt;
-       content: "<tal:t i18n:translate=''>Page</tal:t> " counter(page) " <tal:t i18n:translate=''>of</tal:t> " counter(pages);
+      size: A4 portrait;
+      margin-top: 45mm; /* Espaço para o cabeçalho repetido */
+      margin-bottom: 30mm; /* Espaço para o rodapé fixo */
+      
+      @top-center {
+        content: element(header);
+      }
+      
+      @bottom-right {
+        vertical-align: top;
+        margin-top: 2mm;
+        font-size: 9pt;
+        content: "Página " counter(page) " de " counter(pages);
+      }
      }
-   }
   </style>
 
 </tal:t>
