@@ -19,11 +19,28 @@
           </colgroup>
           <tr tal:repeat="chunk python:view.group_into_chunks(attachments, attachments_per_row)">
             <td class="align-bottom"
+                tal:attributes="colspan python:attachment.AttachmentFile.filename.lower().endswith('.pdf') and attachments_per_row or 1"
                 style="border:none;padding-left:0;"
                 tal:repeat="attachment chunk">
               <figure class="figure">
-                <img class="figure-img img-fluid"
-                     tal:attributes="src string:${attachment/absolute_url}/AttachmentFile;"/>
+                <div class="attachment-container" style="width: 100%; min-height: 500px; margin-bottom: 20px;">
+                  <tal:is_pdf condition="python:attachment.AttachmentFile.filename.lower().endswith('.pdf')">
+                    <object tal:attributes="data string:${attachment/absolute_url}/AttachmentFile" 
+                            type="application/pdf" 
+                            width="100%" 
+                            height="600px">
+                      <p>Seu navegador não pode exibir este PDF. 
+                         <a tal:attributes="href string:${attachment/absolute_url}/AttachmentFile">Clique aqui para baixar.</a>
+                      </p>
+                    </object>
+                  </tal:is_pdf>
+                
+                  <tal:is_img condition="python:not attachment.AttachmentFile.filename.lower().endswith('.pdf')">
+                    <img class="figure-img img-fluid"
+                         style="max-width: 100%; height: auto;"
+                         tal:attributes="src string:${attachment/absolute_url}/AttachmentFile;"/>
+                  </tal:is_img>
+                </div>
                 <figcaption class="figure-caption pt-2">
                   <div class="att_for">
                     <span i18n:translate="">Attachment for</span>
