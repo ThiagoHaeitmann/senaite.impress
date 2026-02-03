@@ -10,7 +10,7 @@
 
     <div class="row section-results no-gutters">
       <div class="w-100">
-        <h1 i18n:translate>Results for <span tal:replace="model/getId"/></h1>
+        <h1 i18n:translate>Resultados <span tal:replace="model/getId"/></h1>
 
         <!-- Point of Capture -->
         <tal:poc define="analyses_by_poc python:view.get_analyses_by_poc(model);"
@@ -26,11 +26,11 @@
                 <!-- Category -->
                 <col style="width: 40%;">
                 <!-- Result -->
-                <col style="width: 30%">
+                <col style="width: 20%">
                 <!-- Unit -->
                 <col style="width: 15%">
                 <!-- Range -->
-                <col style="width: 10%">
+                <col style="width: 20%">
                 <!-- Out of Range -->
                 <col style="width: 5%">
               </colgroup>
