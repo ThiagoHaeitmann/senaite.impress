@@ -5,13 +5,19 @@
                reporter python:view.current_user;
                specification model/Specification;
                publication_specification model/PublicationSpecification;
-               spec python:publication_specification or specification;"
+               spec python:publication_specification or specification;
+               
+               /* Variáveis de Vanguarda Labpharma */
+               client_sample_id model/getClientSampleID|nothing;
+               client_order_num model/getClientOrderNumber|nothing;
+               client_lot python:model.getField('LotClient').get(model) if model.getField('LotClient') else '';
+               date_expiration python:view.to_localized_time(model.getField('DateExpiration').get(model)) if model.getField('DateExpiration').get(model) else '';
+               date_manufactured python:view.to_localized_time(model.getField('Datemanufactured').get(model)) if model.getField('Datemanufactured').get(model) else '';"
        i18n:domain="senaite.impress">
 
   <div class="row section-summary no-gutters">
     <div class="w-100">
-
-      <!-- Barcode -->
+      
       <div class="text-center float-right barcode-container">
         <div class="barcode"
              data-code="code128"
@@ -24,75 +30,82 @@
 
       <h1 i18n:translate="">Summary</h1>
 
-      <table class="table table-sm table-condensed">
-        <tr>
-          <td style="width:20%" class="label" i18n:translate="">Sample ID</td>
-          <td>
-            <a tal:content="model/getId"
-               tal:attributes="href model/absolute_url;">
-            </a>
-          </td>
-        </tr>
-        <tr tal:condition="batch">
-          <td class="label" i18n:translate="">Batch ID</td>
-          <td>
-            <a tal:content="batch/id"
-               tal:attributes="href batch/absolute_url">
-            </a>
-          </td>
-        </tr>
-        <tr tal:condition="batch">
-          <td class="label" i18n:translate="">Client Batch ID</td>
-          <td tal:content="batch/ClientBatchID"></td>
-        </tr>
-        <tr>
-          <td class="label" i18n:translate="">Client</td>
-          <td>
-            <a tal:attributes="href client/absolute_url"
-               tal:content="client/Name"></a>
-          </td>
-        </tr>
-        <tr>
-          <td class="label" i18n:translate="">Client SID</td>
-          <td tal:content="model/ClientSampleID"></td>
-        </tr>
-        <tr>
-          <td class="label" i18n:translate="">Sample Type</td>
-          <td tal:content="model/SampleType/title|nothing"></td>
-        </tr>
-        <tr>
-          <td class="label" i18n:translate="">Specification</td>
-          <td tal:content="spec/contextual_title|nothing"></td>
-        </tr>
-        <tr>
-          <td class="label" i18n:translate="">Date Received</td>
-          <td tal:content="python:view.to_localized_time(model.DateReceived)"></td>
-        </tr>
-        <tr>
-          <td class="label" i18n:translate="">Date Verified</td>
-          <td tal:content="python:view.to_localized_time(model.getDateVerified())"></td>
-        </tr>
-        <tr>
-          <td class="label" i18n:translate="">Date Published</td>
-          <td tal:content="python:view.to_localized_time(view.timestamp)"></td>
-        </tr>
-        <tr tal:condition="reporter">
-          <td class="label" i18n:translate="">Published by</td>
-          <td>
-            <span tal:content="reporter/fullname|reporter/username"/>
-            <tal:email tal:condition="reporter/email|nothing"
-                       tal:define="email reporter/email">
-              (<a tal:content="email"
-                  tal:attributes="href string:mailto:${email}"></a>)
-            </tal:email>
-          </td>
-        </tr>
-        <tr tal:condition="python: batch and batch.BatchLabels">
-          <td class="label" i18n:translate="">Batch Labels</td>
-          <td tal:content="structure python:', '.join(batch.BatchLabels)"></td>
-        </tr>
+      <table class="table table-sm table-condensed table-borderless">
+        <colgroup>
+          <col style="width:15%"/> <col style="width:35%"/> <col style="width:15%"/> <col style="width:35%"/> </colgroup>
+        <tbody>
+          <tr>
+            <th i18n:translate="">Nome Amostra</th>
+            <td tal:content="client_sample_id"/>
+            
+            <th i18n:translate="">Client SID</th>
+            <td tal:content="model/ClientSampleID"/>
+          </tr>
+          
+          <tr>
+            <th i18n:translate="">N° Orçamento</th>
+            <td tal:content="client_order_num"/>
+            
+            <th i18n:translate="">Sample Type</th>
+            <td tal:content="model/getSampleTypeTitle|nothing"/>
+          </tr>
+
+          <tr>
+            <th i18n:translate="">Sample ID</th>
+            <td>
+              <a tal:content="model/getId" tal:attributes="href model/absolute_url"/>
+            </td>
+            
+            <th i18n:translate="">Specification</th>
+            <td tal:content="spec/contextual_title|nothing"/>
+          </tr>
+
+          <tr>
+            <th i18n:translate="">Batch ID</th>
+            <td>
+              <a tal:condition="batch" tal:content="batch/id" tal:attributes="href batch/absolute_url"/>
+              <span tal:condition="not:batch">-</span>
+            </td>
+            
+            <th i18n:translate="">Date Received</th>
+            <td tal:content="python:view.to_localized_time(model.DateReceived)"/>
+          </tr>
+
+          <tr>
+            <th i18n:translate="">Fabricante (Ref)</th>
+            <td tal:content="model/getClientReference|nothing"/>
+            
+            <th i18n:translate="">Date Verified</th>
+            <td tal:content="python:view.to_localized_time(model.getDateVerified())"/>
+          </tr>
+
+          <tr>
+            <th i18n:translate="">Lote do Cliente</th>
+            <td tal:content="client_lot"/>
+            
+            <th i18n:translate="">Date Published</th>
+            <td tal:content="python:view.to_localized_time(view.timestamp)"/>
+          </tr>
+
+          <tr>
+            <th i18n:translate="">Fabricação</th>
+            <td tal:content="date_manufactured"/>
+            
+            <th i18n:translate="">Published by</th>
+            <td>
+              <span tal:content="reporter/fullname|reporter/username"/>
+            </td>
+          </tr>
+
+          <tr>
+            <th i18n:translate="">Validade</th>
+            <td tal:content="date_expiration"/>
+            
+            <th i18n:translate="">Batch Labels</th>
+            <td tal:content="structure python:', '.join(batch.BatchLabels) if batch and batch.BatchLabels else '-'"/>
+          </tr>
+        </tbody>
       </table>
     </div>
   </div>
-
 </tal:t>
