@@ -1,22 +1,30 @@
 <tal:t i18n:domain="senaite.impress">
 
   <div class="row section-header no-gutters">
-    <!-- Header Table -->
     <div class="w-100 mb-2">
       <table class="w-100 mb-0 noborder">
         <colgroup>
-          <col style="width:50%"/>
-          <col style="width:50%;"/>
+          <col style="width:70%"/>
+          <col style="width:30%;"/>
         </colgroup>
         <tr>
-          <!-- Header Left -->
-          <td class="align-middle text-left">
-            <h1 i18n:translate="">Analysis Report</h1>
+          <td class="align-bottom text-left">
+            <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid #333; padding-bottom: 5px; margin-right: 15px;">
+                <h1 i18n:translate="" style="margin: 0; display: inline-block;">Analysis Report</h1>
+                
+                <div class="governance-info" style="text-align: right; font-size: 9pt; color: #555;">
+                    <span style="font-weight: bold;">Nº:</span> 
+                    <span tal:content="python:context.getField('report_number').get(context) or 'PROVISÓRIO'"></span>
+                    <span style="margin-left: 10px; font-weight: bold;">Rev:</span> 
+                    <span tal:content="python:context.getField('report_revision').get(context) or '00'"></span>
+                </div>
+            </div>
           </td>
-          <!-- Header Right -->
+
           <td class="align-middle text-right">
             <img class="logo"
-                 tal:attributes="src string:++plone++senaite.core.static/images/senaite.svg"/>
+                 style="max-width: 180px; height: auto;"
+                 tal:attributes="src string:++plone++senaite.core.static/images/logo_doc.png"/>
           </td>
         </tr>
       </table>
