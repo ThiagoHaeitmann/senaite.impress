@@ -6,8 +6,6 @@
                specification model/Specification;
                publication_specification model/PublicationSpecification;
                spec python:publication_specification or specification;
-               
-               /* Variáveis de Vanguarda Labpharma */
                client_sample_id model/getClientSampleID|nothing;
                client_order_num model/getClientOrderNumber|nothing;
                client_lot python:model.getField('LotClient').get(model) if model.getField('LotClient') else '';
