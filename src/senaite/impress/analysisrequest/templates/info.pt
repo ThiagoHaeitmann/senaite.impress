@@ -23,7 +23,8 @@
                 <div tal:replace="client/Name|nothing"></div>
               </div>
               <div class="client-cnpj">
-                <div tal:replace="client/TaxNumber|nothing"></div>
+                <span style="font-weight: bold;">CNPJ: </span>
+                <span tal:replace="python:client.getTaxNumber() or client.TaxNumber or '---'"></span>
               </div>
               <div class="contact-fullname">
                 <div tal:replace="contact/Fullname|nothing"></div>
@@ -56,7 +57,8 @@
                 <div tal:replace="laboratory/title|nothing"/>
               </div> 
               <div class="cnpj">
-                <div tal:replace="laboratory/tax_number|nothing"/>
+                <span style="font-weight: bold;">CNPJ: </span>
+                <span tal:replace="python:laboratory.getTaxNumber() or laboratory.tax_number or '---'"></span>
               </div>
               <div class="lab-supervisor" tal:condition="laboratory/Supervisor">
                 <span i18n:translate="">Supervisor</span>:
