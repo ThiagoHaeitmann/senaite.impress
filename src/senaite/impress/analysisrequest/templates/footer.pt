@@ -26,9 +26,8 @@
               • <span tal:content="laboratory/PhysicalAddress/city|nothing">Lab City</span>
             </div>
             <div>
-              <span i18n:translate="">Telefone</span>:
               <span tal:content="laboratory/Phone|nothing">Lab Phone Number</span>
-              • <a href="#" tal:attributes="href string:mailto:${laboratory/EmailAddress|nothing}">
+              <a href="#" tal:attributes="href string:mailto:${laboratory/EmailAddress|nothing}">
                 <span tal:content="laboratory/EmailAddress|nothing">Lab Email</span>
               </a>
               • <a href="#" tal:attributes="href laboratory/LabURL|nothing">
