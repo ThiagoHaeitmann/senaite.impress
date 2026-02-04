@@ -70,7 +70,7 @@
    </tal:block>
    @page {
       size: A4 portrait;
-      margin-top: 45mm; /* Espaço para o cabeçalho repetido */
+      margin-top: 10mm; /* Espaço para o cabeçalho repetido */
       margin-bottom: 30mm; /* Espaço para o rodapé fixo */
       
       @top-center {
