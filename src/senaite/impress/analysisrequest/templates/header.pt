@@ -12,12 +12,19 @@
             <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid #333; padding-bottom: 5px; margin-right: 15px;">
                 <h1 i18n:translate="" style="margin: 0; display: inline-block;">Analysis Report</h1>
                 
-                <div class="governance-info" style="text-align: right; font-size: 9pt; color: #555;">
-                    <span style="font-weight: bold;">Nº:</span> 
-                    <span tal:content="python:context.getField('report_number').get(context) or 'PROVISÓRIO'"></span>
-                    <span style="margin-left: 10px; font-weight: bold;">Rev:</span> 
-                    <span tal:content="python:context.getField('report_revision').get(context) or '00'"></span>
-                </div>
+                <div class="governance-info" style="text-align: right; font-size: 9pt; color: #555;"
+                   tal:define="model view/model">
+                  
+                  <span style="font-weight: bold;">Nº:</span> 
+                  <span tal:define="field python:hasattr(model, 'getField') and model.getField('report_number')"
+                        tal:content="python:field.get(model) if field else 'PROVISÓRIO'">
+                  </span>
+              
+                  <span style="margin-left: 10px; font-weight: bold;">Rev:</span> 
+                  <span tal:define="field_rev python:hasattr(model, 'getField') and model.getField('report_revision')"
+                        tal:content="python:field_rev.get(model) if field_rev else '00'">
+                  </span>
+              </div>
             </div>
           </td>
 
