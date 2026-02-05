@@ -30,11 +30,11 @@
   <!-- SAMPLE REMARKS -->
   <tal:t replace="structure python:view.render_remarks(context, **options)" />
 
-  <!-- REPORT SIGNATURES -->
-  <tal:t replace="structure python:view.render_signatures(context, **options)" />
-
   <!-- REPORT DISCREETER -->
   <tal:t replace="structure python:view.render_discreeter(context, **options)" />
+
+  <!-- REPORT SIGNATURES -->
+  <tal:t replace="structure python:view.render_signatures(context, **options)" />
 
   <!-- REPORT ATTACHMENTS -->
   <tal:t replace="structure python:view.render_attachments(context, **options)" />
