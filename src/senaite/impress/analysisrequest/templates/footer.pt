@@ -19,7 +19,8 @@
         <tr>
           <td>
             <div>
-              <strong tal:content="laboratory/Name|nothing">Lab Name</strong> • <strong tal:content="laboratory/tax_number|nothing">CNPJ</strong>
+              <strong tal:content="laboratory/Name|nothing">Lab Name</strong> 
+              • <strong>CNPJ: <span tal:replace="python:laboratory.getTaxNumber() or laboratory.tax_number or '---'"></span></strong>
               <br/>
               <span tal:content="laboratory/PhysicalAddress/address|nothing">Lab Street and Number</span>
               • <span tal:content="laboratory/PhysicalAddress/zip|nothing">Lab ZIP</span>
