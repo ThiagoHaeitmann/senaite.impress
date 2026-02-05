@@ -10,7 +10,7 @@
       <tal:attachment tal:define="attachments python:model.get_sorted_attachments('r');">
         <h2 i18n:translate=""
             tal:condition="attachments">
-          Attachments for <span tal:replace="model/getId"/>
+          Anexo(s) <span tal:replace="model/getId"/>
         </h2>
         <table class="table w-100" tal:condition="attachments">
           <colgroup tal:condition="python:len(attachments) > 1">
@@ -50,7 +50,7 @@
                     <span tal:content="attachment/AttachmentKeys"/>
                   </div>
                   <div class="att_filename">
-                    <span i18n:translate="">Filename:</span>
+                    <span i18n:translate="">Nome do Arquivo:</span>
                     <span tal:content="attachment/AttachmentFile/filename"/>
                   </div>
                 </figcaption>
