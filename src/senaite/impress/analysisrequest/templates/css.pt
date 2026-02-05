@@ -12,6 +12,7 @@
    .report h1 { font-size: 140%; }
    .report h2 { font-size: 120%; }
    .report h3 { font-size: 110%; }
+   .report tr { page-break-inside: avoid; }
    .report .font-size-140 { font-size: 140%; }
    .report .font-size-120 { font-size: 120%; }
    .report .font-size-100 { font-size: 100%; }
@@ -20,12 +21,13 @@
    .report table.noborder td, .report table.noborder th { border: none; }
    .report table.nopadding td { padding: 0; }
    .report table td.label { padding-right: 0.3rem; font-weight: bold; }
-   .report table { border-color: black; }
+   .report table { border-color: black; page-break-inside: auto; }
    .report table td, .report table th { border-top: 1px solid black; border-bottom: 1px solid black; }
    .report table th { border-bottom: 1px solid black; }
+   .report .section-results-transposed { page-break-before: always; }
    .report table.range-table td { padding: 0 0.3rem 0 0; border: none; }
    .report .section-header h1 { font-size: 175%; }
-   .report .section-header img.logo { height: 30px; margin: 20px 0; }
+   .report .section-header img.logo { height: 20px; margin: 10px 0; }
    .report .barcode-hri { margin-top: -0.25em; font-size: 8pt; }
    .report .section-results .methodtitle { font-size: 85%; }
    .report .section-results .results_interims { font-size: 85%; }
@@ -39,12 +41,13 @@
      height: 20mm;
      width: 100%;
      text-align: left;
-     font-size: 9pt;
+     font-size: 6pt;
    }
    .report .section-footer #footer-line {
      width: 100%;
-     height: 2mm;
+     height: 1px;
      border-top: 1px solid black;
+     margin-bottom: 2mm;
    }
 
    .report .section-header {
@@ -68,22 +71,30 @@
      max-height: <tal:t replace="python:'{:.2f}mm'.format(ch * 0.75)"/>;
    }
    </tal:block>
-   @page {
-      size: A4 portrait;
-      margin-top: 10mm; /* Espaço para o cabeçalho repetido */
-      margin-bottom: 30mm; /* Espaço para o rodapé fixo */
-      
-      @top-center {
-        content: element(header);
-      }
-      
-      @bottom-right {
-        vertical-align: top;
-        margin-top: 2mm;
-        font-size: 9pt;
-        content: "Página " counter(page) " de " counter(pages);
-      }
-     }
+  @page {
+    size: A4 portrait;
+    margin-top: 45mm; /* Espaço para o cabeçalho nas páginas 2, 3... */
+    margin-bottom: 35mm; /* Margem de segurança para o rodapé */
+    
+    @top-center {
+      content: element(header);
+    }
+  
+    @bottom-right {
+      vertical-align: top;
+      margin-top: 2mm;
+      font-size: 8pt;
+      content: "Página " counter(page) " de " counter(pages);
+    }
+  }
+  
+  /* Ajuste específico apenas para a Primeira Página */
+  @page :first {
+    margin-top: 10mm; /* Remove o buraco na primeira página */
+    @top-center {
+      content: none; 
+    }
+  }
   </style>
 
 </tal:t>
