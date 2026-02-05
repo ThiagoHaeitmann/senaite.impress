@@ -57,6 +57,17 @@
      position: running(header);
    }
 
+   .report .section-attachments .figure {
+     display: block;
+     width: 100%;
+     margin-bottom: 10mm;
+     page-break-inside: avoid; /* Reforça que a legenda nunca se separe da imagem */
+   }
+
+   .report .section-attachments {
+      page-break-before: always;
+   }
+
    <tal:block condition="python:content_width and content_height">
    <tal:block condition="python:all([content_width, content_height])"
                  define="cw python:float(content_width);
