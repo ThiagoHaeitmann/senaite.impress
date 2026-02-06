@@ -28,6 +28,7 @@
             </div>
             <div>
               <span tal:content="laboratory/Phone|nothing">Lab Phone Number</span>
+              <br/>
               <a href="#" tal:attributes="href string:mailto:${laboratory/EmailAddress|nothing}">
                 <span tal:content="laboratory/EmailAddress|nothing">Lab Email</span>
               </a>
