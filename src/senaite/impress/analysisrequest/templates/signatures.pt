@@ -3,44 +3,47 @@
        i18n:domain="senaite.impress">
 
   <div class="row section-signatures no-gutters">
-    <div class="w-100">
-      <h1 i18n:translate="">Responsibles</h1>
-      <table class="table table-sm table-condensed">
-        <tr>
-          <tal:manager repeat="manager managers">
-            <td style="border:none">
-              <div>
-                <img tal:condition="manager/Signature"
-                     tal:attributes="src string:${manager/absolute_url}/Signature" style="height:75px"/>
-              </div>
-              <div class="font-weight-bold">
-                <span tal:condition="manager/Salutation">&nbsp;</span>
-                <span tal:content="manager/Fullname"></span>
-              </div>
-              <div>
-                <span tal:content="manager/JobTitle"></span>
-              </div>
-              <div>
-                <span tal:content="manager/DefaultDepartment/title|nothing"></span>
-              </div>
-            </td>
-          </tal:manager>
-          <tal:reporter define="reporter python:view.current_user" condition="reporter">
-            <td style="border:none">
-              <div class="label" i18n:translate="">Published by</div>
-              <div>
-                <span tal:content="reporter/fullname|reporter/username"></span>
-                <tal:email tal:condition="reporter/email|nothing"
-                           tal:define="email reporter/email|nothing">
-                  (<a tal:content="email"
-                      tal:attributes="href string:mailto:${email}"></a>)
-                </tal:email>
-              </div>
-            </td>
-          </tal:reporter>
-        </tr>
-      </table>
-    </div>
+  <div class="w-100">
+    <table class="table table-sm" style="border:none; width: 100%;">
+      
+      <tr tal:define="reporter python:view.current_user" tal:condition="reporter">
+        <td style="border:none; padding: 15px 0;">
+          <div class="font-weight-bold">Elaborado por:</div>
+          <div style="margin-left: 20px;">
+            <span tal:content="reporter/fullname|reporter/username"></span> - 
+            <span tal:content="reporter/JobTitle | string:Analista"></span>
+          </div>
+        </td>
+      </tr>
+
+      <tr tal:define="manager python:managers[0] if len(managers) > 0 else nothing" tal:condition="manager">
+        <td style="border:none; padding: 15px 0;">
+          <div class="font-weight-bold">Revisado por:</div>
+          <div style="margin-left: 20px;">
+            <img tal:condition="manager/Signature" 
+                 tal:attributes="src string:${manager/absolute_url}/Signature" 
+                 style="height:60px; display:block; margin-bottom: 5px;"/>
+            <span tal:content="manager/Fullname"></span> - 
+            <span tal:content="manager/JobTitle | string:Garantia da Qualidade"></span>
+          </div>
+        </td>
+      </tr>
+
+      <tr tal:define="approver python:managers[1] if len(managers) > 1 else nothing" tal:condition="approver">
+        <td style="border:none; padding: 15px 0;">
+          <div class="font-weight-bold">Aprovado por:</div>
+          <div style="margin-left: 20px;">
+            <img tal:condition="approver/Signature" 
+                 tal:attributes="src string:${approver/absolute_url}/Signature" 
+                 style="height:60px; display:block; margin-bottom: 5px;"/>
+            <span tal:content="approver/Fullname"></span> - 
+            <span tal:content="approver/JobTitle | string:Gerente Técnico"></span>
+          </div>
+        </td>
+      </tr>
+
+    </table>
   </div>
+</div>
 
 </tal:t>
