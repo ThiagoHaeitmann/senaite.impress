@@ -33,11 +33,9 @@
       </div>
       <div class="discreeter-disclaimer"
            i18n:translate="">
-        Os resultados apresentados referem-se exclusivamente à amostra analisada.
+        <p>Os resultados apresentados referem-se exclusivamente à amostra analisada.</p>
       </div>
       <div class="discreeter-copyright" i18n:translate=""> 
-        <p>Ensaios realizados de acordo com a nota técnica ANVISA nº 200/2025</p>
-        <p>Os resultados apresentados referem-se exclusivamente à amostra analisada.</p>
         <p>A reprodução parcial deste relatório de ensaio requer autorização formal por parte da 
            <strong><tal:block replace="laboratory/title" /></strong>.</p>
         <p>O(s) resultado(s) obtido(s) se aplica(m) à amostra conforme recebida. As informações cadastrais foram fornecidas pelo contratante.</p>
