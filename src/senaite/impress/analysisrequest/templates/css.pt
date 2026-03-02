@@ -67,7 +67,6 @@
    .report .section-header {
      display: block;
      width: 100%;
-     /* Define que este elemento deve aparecer no topo de cada página */
      position: running(header);
    }
 
@@ -75,7 +74,7 @@
      display: block;
      width: 100%;
      margin-bottom: 10mm;
-     page-break-inside: avoid; /* Reforça que a legenda nunca se separe da imagem */
+     page-break-inside: avoid; 
    }
 
    .report .section-attachments {
@@ -96,10 +95,17 @@
      max-height: <tal:t replace="python:'{:.2f}mm'.format(ch * 0.75)"/>;
    }
    </tal:block>
+
+  #header-container {
+      display: block;
+      position: running(header);
+      width: 100%;
+  }
+
   @page {
     size: A4 portrait;
-    margin-top: 45mm; /* Espaço para o cabeçalho nas páginas 2, 3... */
-    margin-bottom: 25mm; /* Margem de segurança para o rodapé */
+    margin-top: 45mm; 
+    margin-bottom: 25mm; 
     
     @top-center {
       content: element(header);
@@ -110,9 +116,8 @@
     }
   }
   
-  /* Ajuste específico apenas para a Primeira Página */
   @page :first {
-    margin-top: 10mm; /* Remove o buraco na primeira página */
+    margin-top: 10mm; 
     @top-center {
       content: none; 
     }
