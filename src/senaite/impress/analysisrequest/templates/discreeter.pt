@@ -36,16 +36,17 @@
         Os resultados apresentados referem-se exclusivamente à amostra analisada.
       </div>
       <div class="discreeter-copyright" i18n:translate=""> 
-        A reprodução parcial deste relatório de ensaio requer autorização formal por parte da 
-        <tal:block replace="laboratory/title" i18n:name="name_lab"/>. 
-        O(s) resultado(s) obtido(s) se aplica(m) à amostra conforme recebida.  
-        As informações cadastrais e da amostra foram fornecidas pelo contratante. 
-        Este laudo é parcial e não representa as análises totais para o produto. 
-      </div>
-      <div tal:define="confidence_level laboratory/Confidence"
-           tal:condition="confidence_level" i18n:translate="">
-        Test results are at a <tal:block replace="confidence_level" i18n:name="lab_confidence"/>% confidence level
-      </div>
+        <p>Ensaios realizados de acordo com a nota técnica ANVISA nº 200/2025</p>
+        <p>Os resultados apresentados referem-se exclusivamente à amostra analisada.</p>
+        <p>A reprodução parcial deste relatório de ensaio requer autorização formal por parte da 
+           <strong><tal:block replace="laboratory/title" /></strong>.</p>
+        <p>O(s) resultado(s) obtido(s) se aplica(m) à amostra conforme recebida. As informações cadastrais foram fornecidas pelo contratante.</p>
+        <p>Este laudo é parcial e não representa as análises totais para o produto.</p>
+        
+        <div style="margin-top: 10px;">
+            <span class="history-label">Histórico de alterações:</span><br/>
+            Ver. 00 - Emissão inicial
+        </div>
     </div>
   </div>
 
