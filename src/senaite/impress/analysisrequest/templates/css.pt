@@ -50,6 +50,20 @@
      margin-bottom: 2mm;
    }
 
+   .labpharma-header {
+     display: block;
+     width: 100%;
+     position: running(header); 
+   }
+
+   .doc-info .page:after {
+     content: counter(page); 
+   }
+
+   .doc-info .topage:after {
+     content: counter(pages); 
+   }
+
    .report .section-header {
      display: block;
      width: 100%;
@@ -92,10 +106,7 @@
     }
   
     @bottom-right {
-      vertical-align: top;
-      margin-top: 2mm;
-      font-size: 8pt;
-      content: "Página " counter(page) " de " counter(pages);
+      content: none;
     }
   }
   
