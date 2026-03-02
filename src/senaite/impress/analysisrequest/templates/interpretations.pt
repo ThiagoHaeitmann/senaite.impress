@@ -7,11 +7,7 @@
                      has_ri python:any(map(lambda r: r.get('richtext'), ris));"
          tal:condition="ris">
       <div class="" tal:condition="has_ri">
-        <h1 i18n:translate>Interpretação de Resultados <span tal:replace="model/getId"/></h1>
-        <tal:ri repeat="ri ris">
-          <h2 tal:condition="ri/richtext|nothing" tal:content="ri/title|nothing">Departamento</h2>
-          <div class="text-info" tal:content="structure ri/richtext|nothing"></div>
-        </tal:ri>
+        <h1 i18n:translate>Conclusão(ões) <span tal:replace="model/getId"/></h1>
       </div>
     </div>
   </tal:model>
