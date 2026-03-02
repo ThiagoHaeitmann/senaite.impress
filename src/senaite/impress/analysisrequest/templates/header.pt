@@ -51,7 +51,7 @@
       </div>
       <div class="doc-info">
         FOR.001. Rev. 00<br />
-        Página 1 de 2
+        Página <span class="page"></span> de <span class="topage"></span>
       </div>
     </div>
 
